@@ -9,6 +9,7 @@ namespace Search_Engine.Controllers
             return View();
         }
 
+        public IActionResult Search(string[] arr) { return View(); }
       
     }
 }
