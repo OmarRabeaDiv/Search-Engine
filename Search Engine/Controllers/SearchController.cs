@@ -9,17 +9,6 @@ namespace Search_Engine.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Seach(string word)
-        {
-
-        }
-
-        [HttpPost]
-        public IActionResult Seach()
-        {
-
-        }
-
+      
     }
 }
