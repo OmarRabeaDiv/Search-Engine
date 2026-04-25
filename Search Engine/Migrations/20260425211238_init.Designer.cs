@@ -11,7 +11,7 @@ using Search_Engine.Models;
 namespace Search_Engine.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20260425130821_init")]
+    [Migration("20260425211238_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -41,7 +41,6 @@ namespace Search_Engine.Migrations
 
                     b.Property<string>("Word")
                         .IsRequired()
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
