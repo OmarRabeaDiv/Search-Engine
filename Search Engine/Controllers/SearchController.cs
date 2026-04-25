@@ -8,5 +8,11 @@ namespace Search_Engine.Controllers
         {
             return View();
         }
+
+        public IActionResult Search(string[] word) 
+        {
+            return View();
+        }
+
     }
 }
