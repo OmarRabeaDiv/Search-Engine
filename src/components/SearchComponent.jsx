@@ -78,7 +78,7 @@ export default function SearchComponent() {
     if (!recognitionRef.current) {
       const recognition = new SpeechRecognition();
 
-      recognition.lang = "en-US";
+      recognition.lang = "ar-EG";
       recognition.interimResults = true;
 
       recognition.onstart = () => setListening(true);

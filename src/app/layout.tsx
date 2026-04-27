@@ -42,9 +42,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased ${playwrite.variable} ${robot.variable}`}
+      
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning={true} >
         {children}
+        
         </body>
     </html>
   );

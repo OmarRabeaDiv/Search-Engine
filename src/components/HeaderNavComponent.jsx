@@ -35,7 +35,7 @@ export default function HeaderNavComponent() {
           <div
             style={{
               padding: "0",
-              height: isOpen ? "250px" : "0px",
+              height: isOpen ? "190px" : "0px",
               overflow: "hidden",
               transition: "0.2s ease",
             }}
@@ -46,7 +46,7 @@ export default function HeaderNavComponent() {
             </h1>
             <ul className="pl-4">
               <li className="mt-2">Mohamed Abdelnasser - Frontend</li>
-              <li className="mt-2">Sief al-din karam salah - Backend</li>
+              <li className="mt-2">Seif el-din karam salah - Backend</li>
               <li className="mt-2">Mazen Mostafa - Scraping</li>
               <li className="mt-2">Omar Rabie - Backend</li>
               <li className="mt-2">Omar Nagy - Scraping</li>
