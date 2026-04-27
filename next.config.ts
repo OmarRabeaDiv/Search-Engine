@@ -4,13 +4,6 @@
 //   /* config options here */
 // };
 
-
-// Hello Seiiffff
-
-//Hello Mohamed,
-
-// I HATE NIGGERS
-
 // export default nextConfig;
 
 
