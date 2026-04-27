@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace Search_Engine.Migrations
+namespace Search_Engine_API.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class init2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

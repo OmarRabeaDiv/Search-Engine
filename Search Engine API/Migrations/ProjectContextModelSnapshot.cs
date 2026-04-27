@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Search_Engine.Models;
+using Search_Engine_API.Models;
 
 #nullable disable
 
-namespace Search_Engine.Migrations
+namespace Search_Engine_API.Migrations
 {
     [DbContext(typeof(ProjectContext))]
     partial class ProjectContextModelSnapshot : ModelSnapshot
@@ -21,7 +21,7 @@ namespace Search_Engine.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Search_Engine.Models.WordRecord", b =>
+            modelBuilder.Entity("Search_Engine_API.Models.WordRecord", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

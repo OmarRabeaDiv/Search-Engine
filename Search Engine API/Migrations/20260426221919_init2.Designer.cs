@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Search_Engine.Models;
+using Search_Engine_API.Models;
 
 #nullable disable
 
-namespace Search_Engine.Migrations
+namespace Search_Engine_API.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20260425211238_init")]
-    partial class init
+    [Migration("20260426221919_init2")]
+    partial class init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Search_Engine.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Search_Engine.Models.WordRecord", b =>
+            modelBuilder.Entity("Search_Engine_API.Models.WordRecord", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
