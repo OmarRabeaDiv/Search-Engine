@@ -9,26 +9,17 @@ export default function ResultSearchComponent({ valSearchInput }) {
 
     const connect = setTimeout(async () => {
       try {
-        const res = await axios.get("www");
+        const res = await axios.get(
+          `https://localhost:7012/api/Search?inputValue=${valSearchInput}`
+        );
+        console.log(res.data);
+        const rawData = res.data;
+        const allUrls = Object.values(rawData).flat();
 
-        const index = res.data; // your inverted index
-        const words = valSearchInput.toLowerCase().split(" ");
+        
+        const uniqueUrls = [...new Set(allUrls)];
 
-        let urls = [];
-
-        if (words.length === 1) {
-          // single word
-          urls = Object.keys(index[words[0]] || {});
-        } else {
-          // multi-word phrase (basic intersection for now)
-          const docs = words.map((word) => Object.keys(index[word] || {}));
-
-          urls = docs.reduce((acc, curr) =>
-            acc.filter((url) => curr.includes(url)),
-          );
-        }
-
-        setData(urls);
+        setData(uniqueUrls);
       } catch (err) {
         console.log(err);
       }
