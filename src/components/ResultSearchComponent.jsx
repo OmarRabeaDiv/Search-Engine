@@ -7,18 +7,34 @@ export default function ResultSearchComponent({ valSearchInput }) {
   useEffect(() => {
     if (!valSearchInput) return;
 
-    const delay = setTimeout(async () => {
+    const connect = setTimeout(async () => {
       try {
-        const res = await axios.get(
-          `https://localhost:7012/api/Search?inputValue=${valSearchInput}`,
-        );
-        setData(res.data);
+        const res = await axios.get("www");
+
+        const index = res.data; // your inverted index
+        const words = valSearchInput.toLowerCase().split(" ");
+
+        let urls = [];
+
+        if (words.length === 1) {
+          // single word
+          urls = Object.keys(index[words[0]] || {});
+        } else {
+          // multi-word phrase (basic intersection for now)
+          const docs = words.map((word) => Object.keys(index[word] || {}));
+
+          urls = docs.reduce((acc, curr) =>
+            acc.filter((url) => curr.includes(url)),
+          );
+        }
+
+        setData(urls);
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     }, 500);
 
-    return () => clearTimeout(delay);
+    return () => clearTimeout(connect);
   }, [valSearchInput]);
 
   if (!valSearchInput || data.length === 0) return null;
@@ -27,9 +43,9 @@ export default function ResultSearchComponent({ valSearchInput }) {
     <div className="resultComponent">
       <div className="content">
         <ul>
-          {data.map((item, index) => (
+          {data.map((url, index) => (
             <li key={index} className="text-start flex items-center">
-              <a href="" className="flex items-center gap-2">
+              <a href={url} target="_blank" className="flex items-center gap-2">
                 <div className="img">
                   <img
                     className="w-8 h-8"
@@ -37,7 +53,7 @@ export default function ResultSearchComponent({ valSearchInput }) {
                     alt="result-icon"
                   />
                 </div>
-                <p>{/* CALL DATA FROM API HERE */}</p>
+                <p>{url}</p>
               </a>
             </li>
           ))}
