@@ -9,6 +9,8 @@
 
 //Hello Mohamed,
 
+// I HATE NIGGERS
+
 // export default nextConfig;
 
 
