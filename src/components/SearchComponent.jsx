@@ -6,14 +6,15 @@ export default function SearchComponent() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get(`https://localhost:7012/api/Search?inputValue=Hello name`)
+    axios
+      .get(`https://localhost:7012/api/Search?inputValue=Hello name`)
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => {
-  console.error("Status:", err.response?.status);
-  console.error("Error:", err.response?.data);  // <-- this shows the real message
-});
+        console.error("Status:", err.response?.status);
+        console.error("Error:", err.response?.data); // <-- this shows the real message
+      });
   }, []);
 
   const [text, setText] = useState("");
@@ -189,9 +190,9 @@ export default function SearchComponent() {
         />
       </div>
       <div>
-      <h1>Data:</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+        <h1>Data:</h1>
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </div>
     </div>
   );
 }
