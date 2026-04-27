@@ -7,6 +7,7 @@
 // export default nextConfig;
 
 //i want to fly to USA
+// Me tooooooooo
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
