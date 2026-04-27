@@ -1,7 +1,21 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 export default function SearchComponent() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    axios.get(`https://localhost:7012/api/Search?inputValue=Hello name`)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+  console.error("Status:", err.response?.status);
+  console.error("Error:", err.response?.data);  // <-- this shows the real message
+});
+  }, []);
+
   const [text, setText] = useState("");
   const [listening, setListening] = useState(false);
   const recognitionRef = useRef(null);
@@ -174,6 +188,10 @@ export default function SearchComponent() {
           data-speed="40"
         />
       </div>
+      <div>
+      <h1>Data:</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
     </div>
   );
 }
