@@ -1,22 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import ResultSearchComponent from "./ResultSearchComponent";
 
 export default function SearchComponent() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get(`https://localhost:7012/api/Search?inputValue=Hello name`)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.error("Status:", err.response?.status);
-        console.error("Error:", err.response?.data); // <-- this shows the real message
-      });
-  }, []);
-
   const [text, setText] = useState("");
   const [listening, setListening] = useState(false);
   const recognitionRef = useRef(null);
@@ -92,7 +78,7 @@ export default function SearchComponent() {
     if (!recognitionRef.current) {
       const recognition = new SpeechRecognition();
 
-      recognition.lang = "ar-EG";
+      recognition.lang = "en-US";
       recognition.interimResults = true;
 
       recognition.onstart = () => setListening(true);
@@ -129,15 +115,16 @@ export default function SearchComponent() {
           className="bg-clip-text text-transparent inline-block"
           style={{
             backgroundImage: `linear-gradient(${angle}deg, #4F46E5, #6366F1, #1F2937)`,
+            textShadow: "2px 8px 15px rgba(0, 0, 0, 0.26)",
           }}
         >
           Explore the <br /> Infinite.
         </h1>
 
         <p>
-          AI-powered discovery engine for the next generation of creative
+          Search Fast Be The Fastest One Who Reaches useful
           <br />
-          minds.
+          Informations.
         </p>
       </div>
 
@@ -169,6 +156,9 @@ export default function SearchComponent() {
           }}
         />
       </div>
+
+      <ResultSearchComponent valSearchInput={text} />
+
       <div ref={myRef} className="floatingElements h-full w-full absolute ">
         <img
           className="absolute left-80 top-100 z-0 float"
@@ -188,10 +178,6 @@ export default function SearchComponent() {
           alt=""
           data-speed="40"
         />
-      </div>
-      <div>
-        <h1>Data:</h1>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
     </div>
   );
