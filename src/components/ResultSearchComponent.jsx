@@ -10,13 +10,12 @@ export default function ResultSearchComponent({ valSearchInput }) {
     const connect = setTimeout(async () => {
       try {
         const res = await axios.get(
-          `https://localhost:7012/api/Search?inputValue=${valSearchInput}`
+          `https://localhost:7012/api/Search?inputValue=${valSearchInput}`,
         );
         console.log(res.data);
         const rawData = res.data;
         const allUrls = Object.values(rawData).flat();
 
-        
         const uniqueUrls = [...new Set(allUrls)];
 
         setData(uniqueUrls);
@@ -44,7 +43,8 @@ export default function ResultSearchComponent({ valSearchInput }) {
                     alt="result-icon"
                   />
                 </div>
-                <p>{url}</p>
+                <p>{url.length > 80 ? url.slice(0, 80) + "..." : url}</p>
+                {/* I repaired max length */}
               </a>
             </li>
           ))}
