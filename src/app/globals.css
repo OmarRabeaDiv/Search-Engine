@@ -68,8 +68,7 @@ header {
 
 .search-section {
     margin-bottom: 120px;
-    margin-top: 100.2px;
-    height: 416px;
+    height: 70svh;
     z-index: 10001;
 }
 
@@ -134,10 +133,10 @@ header {
 }
 
 .resultComponent {
-    position: relative;
-    top: 0px;
+    position: absolute;
+    top: 630px;
     width: 670px;
-    max-height: 800px;
+    max-height: 400px;
     overflow-y: scroll;
     background-color: white;
     margin-top: 10px;

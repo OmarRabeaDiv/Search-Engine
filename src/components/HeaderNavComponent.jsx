@@ -34,9 +34,9 @@ export default function HeaderNavComponent() {
 
           <div
             style={{
-              padding: "0",
-              height: isOpen ? "190px" : "0px",
-              overflow: "hidden",
+              padding: "0px",
+              height: isOpen ? "200px" : "0px",
+              overflowY: "scroll",
               transition: "0.2s ease",
             }}
             className="dragger absolute right-0 top-15 shadow-lg flex flex-col  p-3 text-lg"
