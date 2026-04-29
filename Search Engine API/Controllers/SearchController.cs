@@ -17,13 +17,18 @@ namespace Search_Engine_API.Controllers
             Dictionary<string,List<string>> ResponseData = new Dictionary<string, List<string>>();
             using (var context = new ProjectContext())
             {
-                foreach(var word in words)
+                List<string>? mainList = context.WordRecords.Where(x => x.Word == words[0]).Select(x => x.Url).ToList();
+                for (int i = 1; i < words.Length; i++)
                 {
-                    var list=context.WordRecords.Where(x => x.Word == word).Select(x => x.Url).ToList();
-                    ResponseData[word] = list;
+                    List<string>list= context.WordRecords.Where(x => x.Word == words[i]).Select(x => x.Url).ToList();
+                    mainList=mainList.Intersect(list).ToList();
                 }
+                foreach (var word in words)
+                {
+                    ResponseData[word] = mainList;
+                }
+                return ResponseData;
             }
-            return ResponseData;
         }
     }
 }
