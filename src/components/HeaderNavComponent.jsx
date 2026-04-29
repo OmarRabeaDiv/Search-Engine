@@ -44,7 +44,7 @@ export default function HeaderNavComponent() {
             <h1 className="bg-purple-500 text-white w-half text-center rounded-lg m-2 select-none">
               Credits
             </h1>
-            <ul className="pl-4">
+            <ul className="pl-4 text-sm">
               <li className="mt-2">Mohamed Abdelnasser - Frontend</li>
               <li className="mt-2">Seif el-din karam salah - Backend</li>
               <li className="mt-2">Mazen Mostafa - Scraping</li>
