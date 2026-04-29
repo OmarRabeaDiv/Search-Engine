@@ -30,7 +30,7 @@ namespace Search_Engine_API.Controllers
                 if (string.IsNullOrWhiteSpace(record.Text)) continue;
 
                 // 3. Tokenize the text
-                var words = HelpMethod.Tokenize(record.Text);
+                var words = Tokenize(record.Text);
 
                 // 4. Count frequencies
                 var freqMap = new Dictionary<string, int>();
@@ -60,7 +60,21 @@ namespace Search_Engine_API.Controllers
         }
 
         // Tokenize Arabic and English text only
-        
+        [NonAction]
+        public static List<string> Tokenize(string text)
+        {
+            // Keep ONLY Arabic and English characters, replace everything else with space
+            string cleaned = Regex.Replace(text, @"[^a-zA-Z\u0600-\u06FF\s]", " ");
+
+            // Split by whitespace, lowercase, remove short words
+            var words = cleaned
+                .ToLower()
+                .Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(w => w.Length > 2)
+                .ToList();
+
+            return words;
+        }
     }
     public class Record
     {
