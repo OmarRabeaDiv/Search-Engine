@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "my-bigdata-project",
-=======
-  "name": "my-app",
->>>>>>> 4b20869 (Initial commit from Create Next App)
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,10 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "axios": "^1.15.2",
-=======
->>>>>>> 4b20869 (Initial commit from Create Next App)
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4"
