@@ -22,7 +22,7 @@ export default function ResultSearchComponent({ valSearchInput }) {
       } catch (err) {
         console.log(err);
       }
-    }, 500);
+    }, 100);
 
     return () => clearTimeout(connect);
   }, [valSearchInput]);
@@ -43,7 +43,7 @@ export default function ResultSearchComponent({ valSearchInput }) {
                     alt="result-icon"
                   />
                 </div>
-                <p>{url.length > 80 ? url.slice(0, 80) + "..." : url}</p>
+                <p>{url.length > 50 ? url.slice(0, 50) + "..." : url}</p>
                 {/* I repaired max length */}
               </a>
             </li>
