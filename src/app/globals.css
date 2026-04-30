@@ -133,8 +133,8 @@ header {
 }
 
 .resultComponent {
-    position: absolute;
-    top: 630px;
+    /*position: absolute;
+    top: 630px;*/
     width: 670px;
     max-height: 400px;
     overflow-y: scroll;
