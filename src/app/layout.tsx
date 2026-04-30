@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Playwrite_NO } from 'next/font/google';
-
+import 'animate.css';
 
 import { Roboto } from "next/font/google";
 
@@ -44,6 +44,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased ${playwrite.variable} ${robot.variable}`}
       
     >
+      
       <body className="min-h-full flex flex-col" suppressHydrationWarning={true} >
 
         {children}

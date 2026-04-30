@@ -136,9 +136,9 @@ export default function SearchComponent() {
       ref={myParentRef}
       className="search-section text-center flex flex-col items-center justify-center"
     >
-      <div className="up-sec">
+      <div className="up-sec ">
         <h1
-          className="bg-clip-text text-transparent inline-block"
+          className="bg-clip-text text-transparent inline-block animate__animated animate__tada"
           style={{
             backgroundImage: `linear-gradient(${angle}deg, #4F46E5, #6366F1, #1F2937)`,
             textShadow: "2px 8px 15px rgba(0, 0, 0, 0.26)",
@@ -154,11 +154,11 @@ export default function SearchComponent() {
         </p>
       </div>
 
-      <div className="dn-sec searchField flex items-center gap-2">
+      <div className="dn-sec searchField flex items-center gap-2 animate__animated animate__fadeInUp">
         <img src="/searchIcon.svg" alt="search-icon" />
 
         <input
-          className="searchInput outline-none"
+          className="searchInput outline-none "
           type="text"
           value={text}
           onChange={(e) => {
@@ -171,7 +171,7 @@ export default function SearchComponent() {
         <button
           command="show-modal"
           commandfor="dialog"
-          class="voiceBtn rounded-md bg-gray-950/5 px-2.5 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-950/10"
+          className="voiceBtn rounded-md bg-gray-950/5 px-2.5 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-950/10"
           style={{
             backgroundImage: listening
               ? "url('/listeningIcon.png')"
@@ -187,18 +187,18 @@ export default function SearchComponent() {
           <dialog
             id="dialog"
             aria-labelledby="dialog-title"
-            class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent"
+            className="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent"
           >
-            <el-dialog-backdrop class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
+            <el-dialog-backdrop className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
 
             <div
-              tabindex="0"
-              class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0"
+              tabIndex={0}
+              className="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0"
             >
-              <el-dialog-panel class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                  <div class="sm:flex sm:items-start">
-                    <div class="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:size-10">
+              <el-dialog-panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="sm:flex sm:items-start">
+                    <div className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:size-10">
                       <svg
                         viewBox="0 0 24 24"
                         fill="none"
@@ -213,22 +213,22 @@ export default function SearchComponent() {
                         />
                       </svg>
                     </div>
-                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <h3
                         id="dialog-title"
-                        class="text-base font-semibold text-gray-900"
+                        className="text-base font-semibold text-gray-900"
                       >
                         Choose Language
                       </h3>
-                      <div class="mt-2">
-                        <p class="text-sm text-gray-500">
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
                           We want to know what language are you talking ?
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     type="button"
                     command="close"
@@ -236,7 +236,7 @@ export default function SearchComponent() {
                     onClick={() => {
                       handleVoice("en-US");
                     }}
-                    class="inline-flex w-full justify-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-purple-500 sm:ml-3 sm:w-auto"
+                    className="inline-flex w-full justify-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-purple-500 sm:ml-3 sm:w-auto"
                   >
                     English
                   </button>
@@ -247,7 +247,7 @@ export default function SearchComponent() {
                     onClick={() => {
                       handleVoice("ar-EG");
                     }}
-                    class="mt-3 inline-flex w-full justify-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-xs inset-ring inset-ring-gray-300 hover:bg-purple-500 sm:mt-0 sm:w-auto"
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-xs inset-ring inset-ring-gray-300 hover:bg-purple-500 sm:mt-0 sm:w-auto"
                   >
                     Arabic
                   </button>
