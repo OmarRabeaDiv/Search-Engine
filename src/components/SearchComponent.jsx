@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, createElement } from "react";
 import ResultSearchComponent from "./ResultSearchComponent";
 
 export default function SearchComponent() {
@@ -66,7 +66,7 @@ export default function SearchComponent() {
 
   // Voice Recognition
 
-  const handleVoice = () => {
+  const handleVoice = (lang) => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -74,11 +74,10 @@ export default function SearchComponent() {
       alert("Browser not supported");
       return;
     }
-
     if (!recognitionRef.current) {
       const recognition = new SpeechRecognition();
 
-      recognition.lang = "ar-EG";
+      recognition.lang = lang;
       recognition.interimResults = true;
 
       recognition.onstart = () => setListening(true);
@@ -99,11 +98,38 @@ export default function SearchComponent() {
     if (listening) {
       recognitionRef.current.stop();
     } else {
-      recognitionRef.current.start();
+      setTimeout(() => {
+        recognitionRef.current.lang = lang;
+        recognitionRef.current.start();
+      }, 200);
     }
   };
 
   // ===============================================
+  // Handle Popup Keys Effect
+
+  const popUpTexts = (vl, x, y) => {
+    setTimeout(() => {
+      const body = document.body;
+
+      const div = document.createElement("div");
+      const h1 = document.createElement("h1");
+      div.classList.add("popUpText");
+
+      div.style.top = x * 50 + "svh";
+      div.style.right = y * 250 + "svh";
+
+      const len = vl.length;
+      h1.textContent = vl[len - 1];
+
+      div.appendChild(h1);
+      body.appendChild(div);
+
+      setTimeout(() => {
+        div.remove();
+      }, 800);
+    }, 300);
+  };
 
   return (
     <div
@@ -135,15 +161,17 @@ export default function SearchComponent() {
           className="searchInput outline-none"
           type="text"
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => {
+            setText(e.target.value);
+            popUpTexts(e.target.value, Math.random(), Math.random());
+          }}
           placeholder="Search or speak..."
         />
 
         <button
-          className={`cursor-pointer ${
-            listening ? "shadowListen" : "shadowNo"
-          }`}
-          onClick={handleVoice}
+          command="show-modal"
+          commandfor="dialog"
+          class="voiceBtn rounded-md bg-gray-950/5 px-2.5 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-950/10"
           style={{
             backgroundImage: listening
               ? "url('/listeningIcon.png')"
@@ -154,7 +182,80 @@ export default function SearchComponent() {
             width: "50px",
             height: "50px",
           }}
-        />
+        ></button>
+        <el-dialog>
+          <dialog
+            id="dialog"
+            aria-labelledby="dialog-title"
+            class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent"
+          >
+            <el-dialog-backdrop class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
+
+            <div
+              tabindex="0"
+              class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0"
+            >
+              <el-dialog-panel class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div class="sm:flex sm:items-start">
+                    <div class="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:size-10">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        className="size-6 text-green-600"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 3c4.97 0 9 4.03 9 9s-4.03 9-9 9-9-4.03-9-9 4.03-9 9-9Zm0 0c2.5 2.5 4 6 4 9s-1.5 6.5-4 9m0-18c-2.5 2.5-4 6-4 9s1.5 6.5 4 9M3 12h18"
+                        />
+                      </svg>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                      <h3
+                        id="dialog-title"
+                        class="text-base font-semibold text-gray-900"
+                      >
+                        Choose Language
+                      </h3>
+                      <div class="mt-2">
+                        <p class="text-sm text-gray-500">
+                          We want to know what language are you talking ?
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                  <button
+                    type="button"
+                    command="close"
+                    commandfor="dialog"
+                    onClick={() => {
+                      handleVoice("en-US");
+                    }}
+                    class="inline-flex w-full justify-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-purple-500 sm:ml-3 sm:w-auto"
+                  >
+                    English
+                  </button>
+                  <button
+                    type="button"
+                    command="close"
+                    commandfor="dialog"
+                    onClick={() => {
+                      handleVoice("ar-EG");
+                    }}
+                    class="mt-3 inline-flex w-full justify-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-xs inset-ring inset-ring-gray-300 hover:bg-purple-500 sm:mt-0 sm:w-auto"
+                  >
+                    Arabic
+                  </button>
+                </div>
+              </el-dialog-panel>
+            </div>
+          </dialog>
+        </el-dialog>
       </div>
 
       <ResultSearchComponent valSearchInput={text} />

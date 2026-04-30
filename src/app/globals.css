@@ -7,14 +7,39 @@
   width: 0px;
 }
 
-
-
 body {
     background-image: url("@/public/Background.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgba(236, 235, 235, 0.685);
 }
+
+
+.popUpText {
+
+    position: absolute;
+    
+    font-size: 60px;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+    color: rgba(78, 77, 77, 0.219);
+
+    animation: upKey 1s forwards  ease;
+}
+
+@keyframes upKey {
+    0%{
+        transform: translateY(200px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 
 .rootContent {
     background-image: linear-gradient(180deg , transparent , rgb(255, 255, 255) 95%);
@@ -91,7 +116,7 @@ header {
     font-weight: 400;
     
 }
-.search-section .dn-sec button{
+.search-section .dn-sec .voiceBtn{
     margin-left: 20px;
     width: 50px; 
     border-radius: 50%;
@@ -100,7 +125,7 @@ header {
     transition: .3s ease;
 }
 
-.search-section .dn-sec button:hover{
+.search-section .dn-sec .voiceBtn:hover{
     width: 50px; 
     border-radius: 50%;
     background-color: #6365f1c2;
@@ -136,7 +161,7 @@ header {
     /*position: absolute;
     top: 630px;*/
     width: 670px;
-    max-height: 600px;
+    max-height: 400px;
     overflow-y: scroll;
     background-color: white;
     margin-top: 10px;
