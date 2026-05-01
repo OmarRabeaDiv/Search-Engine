@@ -1,19 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Search_Engine_API.Models;
 
 namespace Search_Engine_API.Controllers
 {
+    //loc/api/Search
     [Route("api/[controller]")]
     [ApiController]
     public class SearchController : ControllerBase
     {
         [HttpGet]
+        /*
+            http//:los/api/con/se?inputvAlue=seif
+        */
         public ActionResult<Dictionary<string, List<string>>> Search([FromQuery]string inputValue)
         {
             if(inputValue is null)return BadRequest("no value sent");
             var words = inputValue.Split(new char[] { ' ', ',', '/', '\n', '\t', '&' });
-            if (words.Length < 1) return BadRequest("Bad value is sent");
+            if (words?.Length < 1) return BadRequest("Bad value is sent");
             Dictionary<string,List<string>> ResponseData = new Dictionary<string, List<string>>();
             using (var context = new ProjectContext())
             {
