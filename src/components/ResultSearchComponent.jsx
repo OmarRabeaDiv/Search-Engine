@@ -26,7 +26,8 @@ export default function ResultSearchComponent({ valSearchInput }) {
     return () => clearTimeout(connect);
   }, [valSearchInput]);
 
-  if (!valSearchInput || data.length === 0) return null;
+  // * Safety Place
+  if (!valSearchInput || data.length <= 3) return null;
 
   return (
     <div className="resultComponent">
@@ -34,7 +35,6 @@ export default function ResultSearchComponent({ valSearchInput }) {
         <ul>
           {data.map((url, index) => {
             const words = valSearchInput.trim().split(/\s+/);
-
             let textToHighlight = words.join(" ");
 
             if (words.length > 1) {
