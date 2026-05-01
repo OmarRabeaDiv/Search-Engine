@@ -28,17 +28,14 @@ export default function ResultSearchComponent({ valSearchInput }) {
 
   if (!valSearchInput || data.length === 0) return null;
 
-  // ! Handling Links
-  const highlightQuery = encodeURIComponent(
-    valSearchInput.trim().split(/\s+/).join(","),
-  );
-
   return (
     <div className="resultComponent">
       <div className="content">
         <ul>
           {data.map((url, index) => {
-            const finalUrl = `${url}?highlight=${highlightQuery}`;
+            const words = valSearchInput.trim().split(/\s+/);
+            const textToHighlight = encodeURIComponent(words.join(" "));
+            const finalUrl = `${url}#:~:text=${textToHighlight}`;
 
             return (
               <li key={index} className="text-start flex items-center">
