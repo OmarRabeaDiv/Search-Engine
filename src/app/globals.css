@@ -185,6 +185,9 @@ header {
     .dragger {
         z-index: 9999999 !important;
     }
+    .resultComponent {
+        width: 353px !important;
+    }
 }
 
 
