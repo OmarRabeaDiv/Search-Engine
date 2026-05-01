@@ -138,7 +138,7 @@ export default function SearchComponent() {
     >
       <div className="up-sec ">
         <h1
-          className="bg-clip-text text-transparent inline-block animate__animated animate__tada"
+          className="bg-clip-text text-transparent inline-block animate__animated animate__flipInX"
           style={{
             backgroundImage: `linear-gradient(${angle}deg, #4F46E5, #6366F1, #1F2937)`,
             textShadow: "2px 8px 15px rgba(0, 0, 0, 0.26)",
@@ -154,7 +154,7 @@ export default function SearchComponent() {
         </p>
       </div>
 
-      <div className="dn-sec searchField flex items-center gap-2 animate__animated animate__fadeInUp">
+      <div className="dn-sec searchField flex items-center gap-2 animate__animated animate__fadeInUp select-none">
         <img src="/searchIcon.svg" alt="search-icon" />
 
         <input
