@@ -38,7 +38,7 @@ namespace Search_Engine_API
 
             app.UseCors("MainPolicy");
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
