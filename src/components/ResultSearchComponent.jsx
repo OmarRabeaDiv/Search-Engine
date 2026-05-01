@@ -35,9 +35,16 @@ export default function ResultSearchComponent({ valSearchInput }) {
           {data.map((url, index) => {
             const words = valSearchInput.trim().split(/\s+/);
 
-            const textToHighlight = encodeURIComponent(words.join(","));
+            let textToHighlight;
 
-            const finalUrl = `${url}#:~:text=${textToHighlight}`;
+            if (words.length > 1) {
+              
+              textToHighlight = `${words.join(" ")},${words[0]}`;
+            } else {
+              textToHighlight = words[0];
+            }
+
+            const finalUrl = `${url}#:~:text=${encodeURIComponent(textToHighlight)}`;
 
             return (
               <li key={index} className="text-start flex items-center">
