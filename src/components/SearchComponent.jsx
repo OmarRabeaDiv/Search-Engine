@@ -155,7 +155,7 @@ export default function SearchComponent() {
       </div>
 
       <div className="dn-sec searchField flex items-center gap-2 animate__animated animate__fadeInUp select-none">
-        <img src="/searchIcon.svg" alt="search-icon" />
+        <img src="./SearchIcon.svg" alt="search-icon" />
 
         <input
           className="searchInput outline-none "

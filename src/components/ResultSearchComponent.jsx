@@ -10,7 +10,7 @@ export default function ResultSearchComponent({ valSearchInput }) {
     const connect = setTimeout(async () => {
       try {
         const res = await axios.get(
-          `https://localhost:7012/api/Search?inputValue=${valSearchInput}`,
+          `http://26.172.216.82:5070/api/Search?inputValue=${valSearchInput}`,
         );
 
         const rawData = res.data;
