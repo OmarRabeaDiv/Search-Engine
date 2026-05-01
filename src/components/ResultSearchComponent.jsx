@@ -42,29 +42,7 @@ export default function ResultSearchComponent({ valSearchInput }) {
             }
 
             const finalUrl = `${url}#:~:text=${encodeURIComponent(textToHighlight)}`;
-
-            if (window.innerWidth >= 673) {
-              return (
-                <li key={index} className="text-start flex items-center">
-                  <a
-                    href={finalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <div className="img">
-                      <img
-                        className="w-8 h-8"
-                        src="./resultIcon.svg"
-                        alt="result-icon"
-                      />
-                    </div>
-
-                    <p>{url.length > 50 ? url.slice(0, 50) + "..." : url}</p>
-                  </a>
-                </li>
-              );
-            } else {
+            return (
               <li key={index} className="text-start flex items-center">
                 <a
                   href={finalUrl}
@@ -80,10 +58,14 @@ export default function ResultSearchComponent({ valSearchInput }) {
                     />
                   </div>
 
-                  <p>{url.length > 20 ? url.slice(0, 20) + "..." : url}</p>
+                  <p>
+                    {window.innerWidth >= 673
+                      ? url.slice(0, 50) + "..."
+                      : url.slice(0, 20) + "..."}
+                  </p>
                 </a>
-              </li>;
-            }
+              </li>
+            );
           })}
         </ul>
       </div>
