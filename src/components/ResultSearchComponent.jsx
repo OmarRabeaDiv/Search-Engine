@@ -9,39 +9,48 @@ export default function ResultSearchComponent({ valSearchInput }) {
 
     const connect = setTimeout(async () => {
       try {
+        // console.log("iam in");
         const res = await axios.get(
           `http://26.172.216.82:5070/api/Search?inputValue=${valSearchInput}`,
         );
-
         const rawData = res.data;
-        const allUrls = Object.values(rawData).flat();
-        const uniqueUrls = [...new Set(allUrls)];
 
-        setData(uniqueUrls);
+        // console.log(valSearchInput);
+        // const allUrls = Object.values(rawData);
+        // console.log(Object.values(rawData).length);
+
+        let finalData = [];
+        for (let i = 0; i < Object.values(rawData).length; i++) {
+          finalData = finalData.concat(Object.values(rawData)[i]);
+        }
+
+        setData(finalData);
       } catch (err) {
         console.log(err);
       }
-    }, 100);
+    }, 500);
 
     return () => clearTimeout(connect);
   }, [valSearchInput]);
 
   // * Safety Place
-  if (!valSearchInput || data.length <= 3) return null;
+  if (!valSearchInput || data.length === 0) return null;
 
   return (
     <div className="resultComponent">
       <div className="content">
         <ul>
           {data.map((url, index) => {
-            const words = valSearchInput.trim().split(/\s+/);
-            let textToHighlight = words.join(" ");
+            //const words = valSearchInput.split(/\s+/);
 
-            if (words.length > 1) {
+            //WORDS = ["HELLO","WORLD"]
+            // test = "HELLO"
+            /*if (words.length > 1) {
               textToHighlight = words[0];
-            }
+            }*/
 
-            const finalUrl = `${url}#:~:text=${encodeURIComponent(textToHighlight)}`;
+            const finalUrl = `${url}#:~:text=${encodeURIComponent(valSearchInput)}`;
+
             return (
               <li key={index} className="text-start flex items-center">
                 <a

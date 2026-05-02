@@ -24,7 +24,7 @@ export default function HeaderNavComponent() {
         <div className="rgt-side flex items-center h-full relative">
           <button
             title="Our Credits"
-            className="headerBtn flex text-center justify-center shadow-md select-none cursor-pointer border-none transition duration-300 ease-in-out"
+            className="headerBtn flex justify-center shadow-md select-none cursor-pointer border-none transition duration-300 ease-in-out"
             onClick={() => {
               setOpen(!isOpen);
             }}

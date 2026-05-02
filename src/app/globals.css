@@ -25,7 +25,7 @@ body {
     text-transform: uppercase;
     color: rgba(78, 77, 77, 0.219);
 
-    animation: upKey 1s forwards  ease;
+    animation: upKey 1s forwards ease;
 }
 
 @keyframes upKey {

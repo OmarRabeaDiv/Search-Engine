@@ -68,12 +68,13 @@ export default function SearchComponent() {
 
   const handleVoice = (lang) => {
     const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
+      window.SpeechRecognition || window.webkitSpeechRecognition; //API Chrome webkit speech
 
     if (!SpeechRecognition) {
       alert("Browser not supported");
       return;
     }
+
     if (!recognitionRef.current) {
       const recognition = new SpeechRecognition();
 
@@ -84,6 +85,7 @@ export default function SearchComponent() {
 
       recognition.onresult = (event) => {
         let transcript = "";
+
         for (let i = 0; i < event.results.length; i++) {
           transcript += event.results[i][0].transcript;
         }
@@ -94,6 +96,8 @@ export default function SearchComponent() {
 
       recognitionRef.current = recognition;
     }
+
+    // start result end
 
     if (listening) {
       recognitionRef.current.stop();
@@ -114,10 +118,11 @@ export default function SearchComponent() {
 
       const div = document.createElement("div");
       const h1 = document.createElement("h1");
+
       div.classList.add("popUpText");
 
-      div.style.top = x * 50 + "svh";
-      div.style.right = y * 250 + "svh";
+      div.style.top = x * 50 + "svh"; //50 upscaling value
+      div.style.right = y * 250 + "svh"; //250 upscaling value
 
       const len = vl.length;
       h1.textContent = vl[len - 1];
@@ -127,7 +132,7 @@ export default function SearchComponent() {
 
       setTimeout(() => {
         div.remove();
-      }, 800);
+      }, 800); // 800 MS .8S
     }, 300);
   };
 
@@ -258,7 +263,9 @@ export default function SearchComponent() {
         </el-dialog>
       </div>
 
-      <ResultSearchComponent valSearchInput={text} />
+      <ResultSearchComponent
+        valSearchInput={text.trim().split(/\s+/).join(" ").toLowerCase()}
+      />
 
       <div ref={myRef} className="floatingElements h-full w-full absolute ">
         <img
