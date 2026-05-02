@@ -23,8 +23,9 @@ export default function ResultSearchComponent({ valSearchInput }) {
         for (let i = 0; i < Object.values(rawData).length; i++) {
           finalData = finalData.concat(Object.values(rawData)[i]);
         }
-
-        setData(finalData);
+        const uniqueData = [...new Set(finalData)];
+        
+        setData(uniqueData);
       } catch (err) {
         console.log(err);
       }
